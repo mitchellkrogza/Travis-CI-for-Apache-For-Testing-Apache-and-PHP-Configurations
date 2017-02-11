@@ -1,5 +1,5 @@
 <VirtualHost *:80 [::]:80>
-	ServerName localhost
+	ServerName local.dev
 	DocumentRoot /var/www
 	ErrorLog /tmp/error.log
 	#CustomLog /tmp/access.log
