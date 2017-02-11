@@ -62,6 +62,8 @@ script:
   - sudo apache2 -v
   # Check PHP Version
   - sudo php -v
+  # Test curl to 127.0.53.53
+  - curl -vsf 'http://127.0.53.53:80/apache.php' &> /dev/stdout
   # Check if the site responds OK
   - curl -vsf 'http://local.dev:80/apache.php' &> /dev/stdout
   # Test if PHP is working
