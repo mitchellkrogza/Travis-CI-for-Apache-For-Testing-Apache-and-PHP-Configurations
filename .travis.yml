@@ -1,0 +1,49 @@
+language: php
+
+env:
+    - WEB_PORT_80_TCP_ADDR=localhost
+
+sudo: required
+dist: xenial
+
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+    - 7.0
+
+matrix:
+  fast_finish: true
+
+cache:
+  - apt
+
+install:
+  ############################################################
+  # Let us Setup Apache2 for Ubuntu 16.04 with Php 7 and MySQL
+  ############################################################
+  - sudo apt-get update
+  - sudo apt-get install -y --force-yes apache2 php mysql-server libapache2-mod-php php-mcrypt php-mysql
+  # Copy our virtual host template to sites-enabled overwriting the default site conf
+  - sudo cp travisCI/defaultsite.tpl /etc/apache2/sites-available/000-default.conf
+  # Copy basic testing files into /var/www including making the dir
+  - sudo mkdir /var/www
+  - sudo cp www/info.php /var/www/info.php
+  - sudo cp www/apache.php /var/www/apache.php
+  # Enable mod rewrite module
+  - sudo a2enmod rewrite
+  # Restart apache
+  - sudo service apache2 restart
+  # Restart PHP
+  - sudo service php7.0-fpm restart
+
+script:
+  # Do an Apache Config Test
+  - sudo apache2ctl configtest &> /dev/stdout
+  # Check if the site responds OK
+  - curl -vsf 'http://localhost:8080/apache.php' &> /dev/stdout
+  # Test if PHP is working
+  - curl -vsf 'http://localhost:8080/info.php' &> /dev/stdout
+  # Test a Good User-Agent String against our site (later we test bad bots here)
+  - curl -A "googlebot" http://localhost:8080/apache.php &> /dev/stdout
+  - cat /tmp/error.log
