@@ -1,8 +1,7 @@
-<VirtualHost 127.0.53.53:80>
+<VirtualHost *:80>
 	ServerName local.dev
 	DocumentRoot /var/www
 	ErrorLog /tmp/error.log
-	#CustomLog /tmp/access.log
 <Directory "/var/www">
 Options +Includes
 Options +FollowSymLinks -Indexes

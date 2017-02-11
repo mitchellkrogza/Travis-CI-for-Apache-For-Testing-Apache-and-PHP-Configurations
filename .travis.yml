@@ -27,6 +27,7 @@ before_install:
   # Let us Setup Apache2 for Ubuntu 16.04 with Php 7 and MySQL
   ############################################################
   # Set Server Host Name - Travis hostnames resolve to 127.0.53.53
+  - echo "127.0.0.1  local.dev" | sudo tee -a /etc/hosts
   - echo "127.0.53.53  local.dev" | sudo tee -a /etc/hosts
   - echo "169.254.169.254 local.dev" | sudo tee -a /etc/hosts
   # Install Apache2
