@@ -48,6 +48,7 @@ before_install:
   # Set Server Host Name - Travis hostnames resolve to 127.0.53.53
   - echo "127.0.0.1    localhost" | sudo tee -a /etc/hosts
   - echo "127.0.53.53  local.dev" | sudo tee -a /etc/hosts
+  - echo "169.254.169.254 local.dev" | sudo tee -a /etc/hosts
   # Set HostName through Networking
   #- sudo hostname localhost
   # Restart apache
