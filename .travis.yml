@@ -40,6 +40,8 @@ before_install:
   - sudo a2enconf servername
   # Set Server Host Name
   - echo "127.0.0.1    localhost" | sudo tee -a /etc/hosts
+  # Set HostName through Networking
+  - sudo hostname localhost
   # Restart apache
   - sudo service apache2 restart
   # Restart PHP
