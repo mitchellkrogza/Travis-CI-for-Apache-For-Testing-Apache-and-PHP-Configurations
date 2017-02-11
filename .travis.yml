@@ -27,7 +27,7 @@ before_install:
   # Add PHP
   - sudo add-apt-repository -y ppa:ondrej/php
   - sudo apt-get update
-  - sudo apt-get install -y --force-yes php7.0 libapache2-mod-php7.0
+  - sudo apt-get install -y --force-yes php7.0 libapache2-mod-php7.0 php7.0-fpm
   # Copy our virtual host template to sites-enabled overwriting the default site conf
   - sudo cp travisCI/defaultsite.tpl /etc/apache2/sites-available/000-default.conf
   # Copy basic testing files into /var/www including making the dir
