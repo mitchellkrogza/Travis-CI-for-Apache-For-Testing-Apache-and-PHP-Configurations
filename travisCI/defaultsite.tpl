@@ -7,7 +7,7 @@ Options +Includes
 Options +FollowSymLinks -Indexes
 
 # Include Below For Testing Apache Ultimate Bad Bot blocker - Disabled For Now
-#Include /etc/apache2/custom.d/globalblacklist.conf
+Include /etc/apache2/custom.d/globalblacklist.conf
 
 # Setup WordPress Rewrites - Disabled For Now
 #<IfModule mod_rewrite.c>
