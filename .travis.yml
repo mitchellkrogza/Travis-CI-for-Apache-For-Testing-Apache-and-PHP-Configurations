@@ -22,9 +22,12 @@ before_install:
   ############################################################
   # Let us Setup Apache2 for Ubuntu 16.04 with Php 7 and MySQL
   ############################################################
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq -y --force-yes apache2
-  - sudo apt-get install -qq -y --force-yes php7.0 libapache2-mod-php7.0
+  - sudo apt-get update
+  - sudo apt-get install -y --force-yes apache2
+  # Add PHP
+  - sudo add-apt-repository ppa:ondrej/php
+  - sudo apt-get update
+  - sudo apt-get install -y --force-yes php7.0 libapache2-mod-php7.0
   # Copy our virtual host template to sites-enabled overwriting the default site conf
   - sudo cp travisCI/defaultsite.tpl /etc/apache2/sites-available/000-default.conf
   # Copy basic testing files into /var/www including making the dir
@@ -39,7 +42,7 @@ before_install:
   - sudo service php7.0-fpm restart
 
 before_script:
-  - cd website && composer self-update && composer install -n --prefer-source
+  - cd website && composer self-update --rollback && composer install -n --prefer-source
   
 script:
   # Do an Apache Config Test
