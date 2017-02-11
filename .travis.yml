@@ -38,6 +38,10 @@ before_install:
   # Install PHP 7.0
   - sudo apt-get update
   - sudo apt-get install -y --force-yes php7.0 libapache2-mod-php7.0 php7.0-fpm
+  # Add testing of Apache Bad Bot Blocker
+  - sudo mkdir /etc/apache2/custom.d
+  - cd /etc/apache2/custom.d
+  - sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/custom.d/globalblacklist.conf
   # Copy our virtual host template to sites-enabled overwriting the default site conf
   - sudo cp travisCI/defaultsite.tpl /etc/apache2/sites-available/000-default.conf
   # Copy basic testing files into /var/www
@@ -52,11 +56,6 @@ before_install:
   - sudo service apache2 restart
   # Restart PHP
   - sudo service php7.0-fpm restart
-  # Add testing of Apache Bad Bot Blocker
-  - sudo mkdir /etc/apache2/custom.d
-  - cd /etc/apache2/custom.d
-  - sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/custom.d/globalblacklist.conf
-  - sudo service apache2 restart
 
 script:
   # Do a lookup on local.dev hostname set above 
