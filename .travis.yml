@@ -41,8 +41,8 @@ before_install:
   # Restart PHP
   - sudo service php7.0-fpm restart
 
-before_script:
-  - cd website && composer self-update --rollback && composer install -n --prefer-source
+#before_script:
+#  - cd website && composer self-update --rollback && composer install -n --prefer-source
   
 script:
   # Do an Apache Config Test
