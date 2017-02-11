@@ -1,4 +1,4 @@
-<VirtualHost *:80 [::]:80>
+<VirtualHost 127.0.53.53:80>
 	ServerName local.dev
 	DocumentRoot /var/www
 	ErrorLog /tmp/error.log
