@@ -1,5 +1,5 @@
-<VirtualHost *:8080>
-	ServerName localhost
+<VirtualHost *:80>
+	ServerName 127.0.0.1
 	DocumentRoot /var/www
 	ErrorLog /tmp/error.log
 	#CustomLog /tmp/access.log

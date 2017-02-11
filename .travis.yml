@@ -4,7 +4,7 @@ env:
     - WEB_PORT_80_TCP_ADDR=localhost
 
 sudo: required
-dist: xenial
+dist: trusty
 
 php:
     - 5.4
@@ -47,10 +47,12 @@ before_install:
 script:
   # Do an Apache Config Test
   - sudo apache2ctl configtest &> /dev/stdout
+  # Check Apache Version
+  - sudo apache2 -v
   # Check if the site responds OK
-  - curl -vsf 'http://localhost:8080/apache.php' &> /dev/stdout
+  - curl -vsf 'http://127.0.0.1:80/apache.php' &> /dev/stdout
   # Test if PHP is working
-  - curl -vsf 'http://localhost:8080/info.php' &> /dev/stdout
+  - curl -vsf 'http://127.0.0.1:80/info.php' &> /dev/stdout
   # Test a Good User-Agent String against our site (later we test bad bots here)
-  - curl -A "googlebot" http://localhost:8080/apache.php &> /dev/stdout
+  - curl -A "googlebot" http://127.0.0.1:80/apache.php &> /dev/stdout
   - cat /tmp/error.log
