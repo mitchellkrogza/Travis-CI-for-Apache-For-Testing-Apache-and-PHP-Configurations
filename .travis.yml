@@ -18,7 +18,7 @@ matrix:
 cache:
   - apt
 
-install:
+before_install:
   ############################################################
   # Let us Setup Apache2 for Ubuntu 16.04 with Php 7 and MySQL
   ############################################################
@@ -37,6 +37,9 @@ install:
   # Restart PHP
   - sudo service php7.0-fpm restart
 
+before_script:
+  - cd website && composer self-update && composer install -n --prefer-source
+  
 script:
   # Do an Apache Config Test
   - sudo apache2ctl configtest &> /dev/stdout
