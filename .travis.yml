@@ -12,6 +12,10 @@ php:
     - 5.6
     - 7.0
 
+addons:
+  hosts:
+    - local.dev
+    
 matrix:
   fast_finish: true
 
@@ -51,10 +55,14 @@ before_install:
 #  - cd website && composer self-update --rollback && composer install -n --prefer-source
   
 script:
+  # Do a lookup on local.dev hostname set above 
+  - nslookup local.dev
   # Do an Apache Config Test
-  - sudo apache2ctl configtest &> /dev/stdout
+  - sudo apache2ctl configtest
   # Check Apache Version
   - sudo apache2 -v
+  # Check PHP Version
+  - sudo php -v
   # Check if the site responds OK
   - curl -vsf 'http://localhost:80/apache.php' &> /dev/stdout
   # Test if PHP is working
