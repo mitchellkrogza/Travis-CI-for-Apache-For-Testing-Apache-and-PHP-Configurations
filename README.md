@@ -8,6 +8,8 @@ This is a very basic template for getting Travis CI's container based infrastruc
 
 Travis CI is a great system for checking and testing your build's Commits, Pull Requests and Merges. Travis runs everything inside a Docker container so it's a fully contained system that you can run build tests on your GIT repository and you can't break anything outside of it.
 
+I built this basic Travis test for testing my Apache Bad Bot Blocker builds - See > https://github.com/mitchellkrogza/apache-ultimate-bad-bot-blocker
+
 This repository contains a simple layout for installing Apache and PHP 7.0 into Travis, then loading your config files and running and number of bash commands to test your scripts.
 
 If you pulled all your hair out already trying to get this all to work with Travis CI then you have landed in the right repository. This is a work in progress, rather rough at the edges but it works so far and needs a lot more work done to it still. But I'm sure it will at least guide you in the right direction for testing Apache stuff using Travis CI.
