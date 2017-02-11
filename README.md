@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations.svg?branch=master)](https://travis-ci.org/mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations)
 # Template for Travis CI Testing of Apache Configuration Files
 ## Written by Mitchell Krog - https://github.com/mitchellkrogza
 
@@ -14,3 +15,5 @@ If you pulled all your hair out already trying to get this all to work with Trav
 This very basic script tests a curl against a simple file we place into the /var/www directory and then also tests that php is working by running a curl to info.php also placed into the /var/www directory during out Travis build.
 
 If you don't even know what the heck Travis CI is read here - https://travis-ci.org/
+
+### If this helped you why not [buy me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BKF9XT6WHATLG):beer:
