@@ -22,8 +22,8 @@ install:
   ############################################################
   # Let us Setup Apache2 for Ubuntu 16.04 with Php 7 and MySQL
   ############################################################
-  - sudo apt-get update
-  - sudo apt-get install -y --force-yes apache2 php mysql-server libapache2-mod-php php-mcrypt php-mysql
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y --force-yes apache2 php7.0 mysql-server libapache2-mod-php
   # Copy our virtual host template to sites-enabled overwriting the default site conf
   - sudo cp travisCI/defaultsite.tpl /etc/apache2/sites-available/000-default.conf
   # Copy basic testing files into /var/www including making the dir
