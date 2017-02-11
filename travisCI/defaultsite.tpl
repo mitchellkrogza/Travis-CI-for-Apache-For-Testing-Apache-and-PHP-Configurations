@@ -1,7 +1,7 @@
 <VirtualHost *:8080>
 	DocumentRoot /var/www
 	ErrorLog /tmp/error.log
-	CustomLog /tmp/access.log
+	#CustomLog /tmp/access.log
 <Directory "/var/www">
 Options +Includes
 Options +FollowSymLinks -Indexes
