@@ -38,6 +38,8 @@ before_install:
   # Set ServerName Globally
   - sudo cp travisCI/servername.tpl /etc/apache2/conf-available/servername.conf
   - sudo a2enconf servername
+  # Set Server Host Name
+  - echo "127.0.0.1    localhost" | sudo tee -a /etc/hosts
   # Restart apache
   - sudo service apache2 restart
   # Restart PHP
