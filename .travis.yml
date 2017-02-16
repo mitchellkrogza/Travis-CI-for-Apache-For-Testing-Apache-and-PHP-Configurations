@@ -16,7 +16,7 @@ matrix:
 cache:
   - apt
 before_install:
-  - travisCI/install-nginx.sh
+  - travisCI/install-apache.sh
 script:
   # Do a lookup on local.dev hostname set above 
   - nslookup local.dev
