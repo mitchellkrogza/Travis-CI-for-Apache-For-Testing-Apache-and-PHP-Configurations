@@ -1,21 +1,23 @@
 language: php
 env:
-    - WEB_PORT_80_TCP_ADDR=localhost
+  global:
+    - secure: I/8TWUxe4NJp47f4pKhndulMqKiz4kM562eSPGYFrKWnvTlKgu/4O8pHsVRhtTyhrUdYaK9A0FhqecaxaA9ASiG3ATQ3wgJMJcjve2BzAA1eCO9n64/u5y9vuNJWPQ/LApaH5AZZPTcrDPRwtPWCPpOfB66Gek0xX67Bsu8vOEKuDOXzPqll/km7FJqGdLlR2J7jP1J8JnAq36uN54Gc7NecZjLiRwPEVvFoWW7mlQxmyOcj6Qu92nY+pODhy9CvS+XL1XB80nMggAZSARhOgPv7C9gjw/HGUZ8AZqZ85DkBXW5Watbk3XDEyVkMse73asihnoXz5rAELEoSDlWTtONaZLLi2tpWJdJzVLxTVVM2wp9E8uZnCD7w3MfZWeYy6E06hKfBkN2U7w0DKho48OL4u/QDLh1rOa67qfejwoPRNgInIb4eK0i/x5+Gg7r22s0iU+qRGGlkZNHjLbg2yEbcJZ7g0Wiu91fhPZNbirvx+YOFekfXQit0CdKo/kTqR0PDtG0StowDi1359to+Zkn24EE2l+Xiw1IPKNX6ag2ph2hLN6+4JIHghLPNoarfFJtCVXLrOobpIxMN/hLY1FZ9we27beJ/mTTClJAAG9jCXzERMOcHOWCjdd44kas5VaAeyEfu9Mm3ZXu5e0H5bFzaNRRnqb3qDGgY7pjuLDM=
+    - GIT_NAME: Travis CI
+    - GIT_EMAIL: builds@travis-ci.org
+    - TRAVIS_REPO_SLUG: mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations
+    - GIT_BRANCH: master
+matrix:
+  fast_finish: true
 sudo: required
 dist: trusty
 php:
-    - 5.4
-    - 5.5
     - 5.6
-    - 7.0
 addons:
   hosts:
     - local.dev
-matrix:
-  fast_finish: true
 cache:
   - apt
-before_install:
+install:
   - travisCI/install-apache.sh
 script:
   # Do a lookup on local.dev hostname set above 
@@ -38,3 +40,18 @@ script:
   - STATUSCODE=$(curl -I http://local.dev:80/apache.php -e http://100dollars-seo.com &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 403; then exit 0; fi
   - STATUSCODE=$(curl -I http://local.dev:80/apache.php -e http://zx6.ru &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 403; then exit 0; fi
   - cat /tmp/error.log
+before_deploy:
+  - travisCI/deploy.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: ${GH_TOKEN}
+  file:
+  - "README.md"
+  skip_cleanup: true
+  on:
+    repo: mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations
+    tags: false
+    all_branches: true
+notifications:
+    email: false
