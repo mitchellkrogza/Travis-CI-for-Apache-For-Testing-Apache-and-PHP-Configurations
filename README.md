@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations.svg?branch=master)](https://travis-ci.org/mitchellkrogza/Travis-CI-for-Apache-For-Testing-Apache-and-PHP-Configurations)
-# Template for Travis CI Testing of Apache Configuration Files
+# Template for Travis CI Testing of Apache and PHP Configuration Files
 ## Written by Mitchell Krog - https://github.com/mitchellkrogza
 
 This is a very basic template for getting Travis CI's container based infrastructure to install a stable version of Apache on Ubuntu 14.04 (Trusty) along with PHP 7.0 to test any scenario of apache.conf files and customization scripts you have written. Travis currently only supports Trusty versions of Ubuntu so the PHP 7 packages are pulled in from ppa:ondrej/php
